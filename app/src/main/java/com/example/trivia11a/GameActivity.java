@@ -11,7 +11,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button btna1, btna2, btna3,btna4;
     private TextView tvQuestion, tvQuestionNumber, tvPoints, tvGameOver;
+    private Question q;
     private Collection collection;
+    private int points=0 ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,16 +46,56 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void nextQuestion() {
-        Question q = collection.getNextQuestion();
-        tvQuestion.setText(q.getQuestion());
-        btna1.setText(q.getA1());
-        btna2.setText(q.getA2());
-        btna3.setText(q.getA3());
-        btna4.setText(q.getA4());
+        if (collection.isNotLastQuestion())
+        {
+            q = collection.getNextQuestion();
+
+            tvQuestion.setText(q.getQuestion());
+            btna1.setText(q.getA1());
+            btna2.setText(q.getA2());
+            btna3.setText(q.getA3());
+            btna4.setText(q.getA4());
+        }
+        else
+        {
+            tvGameOver.setVisibility(View.VISIBLE);
+            createDialog();
+        }
+    }
+
+    private void createDialog()
+    {
+
     }
 
     @Override
-    public void onClick(View v) {
-
+    public void onClick(View v)
+    {
+        if (v==btna1)
+        {
+            if (q.getCorrect()==1)
+                points++;
+        }
+        if (v==btna2)
+        {
+            if (q.getCorrect()==2)
+                points++;
+        }
+        if (v==btna3)
+        {
+            if (q.getCorrect()==3)
+                points++;
+        }
+        if (v==btna4)
+        {
+            if (q.getCorrect()==4)
+                points++;
+        }
+        tvPoints.setText("points: " + points);
+        if(collection.isNotLastQuestion())
+        {
+            tvQuestionNumber.setText("Question number: "+ (collection.getIndex()+1));
+        }
+        nextQuestion();
     }
 }
