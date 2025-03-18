@@ -35,7 +35,6 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
                 new ArrayAdapter(this, android.R.layout.simple_spinner_item,arrColor);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(aa);
-
     }
 
     @Override
@@ -45,6 +44,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         setResult(RESULT_OK,i);
         finish();  // close the activity
     }
+
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

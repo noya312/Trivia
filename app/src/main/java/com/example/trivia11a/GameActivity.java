@@ -60,6 +60,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         {
             q = collection2.getNextQuestion();
 
+
             tvQuestion.setText(q.getQuestion());
             btna1.setText(q.getA1());
             btna2.setText(q.getA2());

@@ -28,6 +28,7 @@ public class FbModule {
                         ((MainActivity)context).setNewColorFromFb(str);
                     }
 
+
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 

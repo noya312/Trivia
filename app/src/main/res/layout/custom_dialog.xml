@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="#F1EBF3"
+        android:background="#D1B8F8"
+        android:text="Play Again?"
+        android:textSize="40dp"></TextView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnYes"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textSize="25dp"
+            android:backgroundTint="#7DD3D3"
+            android:text="Yes"></Button>
+
+        <Button
+            android:id="@+id/btnNo"
+            android:layout_width="190dp"
+            android:textSize="25dp"
+            android:backgroundTint="#7DD3D3"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="No"></Button>
+    </LinearLayout>
+
+</LinearLayout>

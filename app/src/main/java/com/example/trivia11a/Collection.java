@@ -7,6 +7,7 @@ public class Collection {
     private ArrayList<Question> arr;
     private int index; // מספר השאלה הבאה בתור
 
+
     public Collection()
     {
         Question q1 = new Question("1+10","7", "11", "3","100", 2);

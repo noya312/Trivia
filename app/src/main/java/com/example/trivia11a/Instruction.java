@@ -17,4 +17,5 @@ public class Instruction extends AppCompatActivity {
         setContentView(R.layout.activity_instruction);
         t1= findViewById(R.id.t1);
     }
+
 }
