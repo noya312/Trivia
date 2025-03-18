@@ -2,9 +2,12 @@ package com.example.trivia11a;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
@@ -12,13 +15,21 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private Button btna1, btna2, btna3,btna4;
     private TextView tvQuestion, tvQuestionNumber, tvPoints, tvGameOver;
     private Question q;
-    private Collection collection;
+    private Collection2 collection2;
+    private LinearLayout nn;
     private int points=0 ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        Intent intent = getIntent();
+        String str = intent.getStringExtra("nncolor");
+        nn = findViewById(R.id.activity_game);
+        setBackgroundColor(str);
+
+        
 
         tvQuestion= findViewById(R.id.tvQuestion);
         btna1= findViewById(R.id.btna1);
@@ -38,17 +49,16 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         tvGameOver.setVisibility(View.INVISIBLE);
 
-        collection = new Collection();
-        collection.initQuestions();
+        collection2 = new Collection2();
+        collection2.initQuestions();
 
         nextQuestion();
-
     }
 
     private void nextQuestion() {
-        if (collection.isNotLastQuestion())
+        if (collection2.isNotLastQuestion())
         {
-            q = collection.getNextQuestion();
+            q = collection2.getNextQuestion();
 
             tvQuestion.setText(q.getQuestion());
             btna1.setText(q.getA1());
@@ -65,7 +75,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     private void createDialog()
     {
-
+        CustomDialog customDialog = new CustomDialog(this);
+        customDialog.show();
     }
 
     @Override
@@ -92,10 +103,50 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 points++;
         }
         tvPoints.setText("points: " + points);
-        if(collection.isNotLastQuestion())
+        if(collection2.isNotLastQuestion())
         {
-            tvQuestionNumber.setText("Question number: "+ (collection.getIndex()+1));
+            tvQuestionNumber.setText("Question number: "+ (collection2.getIndex()+1));
         }
         nextQuestion();
+    }
+
+    public void reset()
+    {
+        this.points=0;
+        collection2.initQuestions();
+        tvPoints.setText("Points: "+ 0);
+        tvQuestionNumber.setText("Question number: "+ 1);
+        tvGameOver.setVisibility(View.INVISIBLE);
+        this.nextQuestion();
+    }
+
+    public void setBackgroundColor(String color)
+    {
+        switch (color)
+        {
+            case "Red":
+            {
+                nn.setBackgroundColor(Color.RED);
+                break;
+            }
+            case "Blue":
+            {
+                nn.setBackgroundColor(Color.BLUE);
+                break;
+            }
+            case "Pink":
+            {
+                nn.setBackgroundColor(Color.argb(255,255,192,203));
+                break;
+            }
+            case "Yellow":
+            {
+                nn.setBackgroundColor(Color.YELLOW);
+                break;
+            }
+
+            default:
+                nn.setBackgroundColor(Color.WHITE);
+        }
     }
 }
